@@ -1,0 +1,684 @@
+@import './colours.scss';
+@import './animation.scss';
+
+%DEFAULT_LINK_STYLE {
+  font-size: 13px;
+  font-family: 'Lato';
+  color: #337ab7;
+  cursor: pointer;
+  &:hover {
+    color: #23527c;
+  }
+}
+
+%CUSTOM_TEXTFIELD_STYLE {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 7px;
+  background-color: #fff;
+  border: solid 0.1rem #d7d7d7;
+  justify-content: space-between;
+
+  input {
+    padding: 0;
+    border: none;
+  }
+}
+
+.common {
+  &.stepper {
+    .MuiStepper-root {
+      background: transparent;
+    }
+    .MuiStepLabel-label.MuiStepLabel-active {
+      font-weight: bold;
+    }
+    .MuiStepConnector-lineHorizontal {
+      border-top-style: dotted;
+      border-top-width: 3px;
+    }
+  }
+
+  &.textlabel {
+    font-size: 14px;
+    color: $app_grey5;
+    font-family: 'Lato';
+  }
+
+  &.switch {
+    .MuiFormControlLabel-root {
+      margin: 0 !important;
+
+      .MuiSwitch-root {
+        width: 42px;
+        height: 26px;
+        padding: 0;
+        margin: 0 8px 0 0;
+      }
+
+      .MuiSwitch-switchBase {
+        padding: 1px;
+
+        &.Mui-checked {
+          color: $app_white;
+          transform: translateX(16px);
+
+          & + .MuiSwitch-track {
+            border: none;
+            opacity: 1;
+            background-color: $app_green;
+          }
+        }
+      }
+
+      .MuiSwitch-track {
+        opacity: 1;
+        transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+        border-radius: 13px;
+        background-color: $app_grey2;
+      }
+
+      .MuiSwitch-thumb {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+
+  &.captcha-images {
+    [type='radio'] {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    /* IMAGE STYLES */
+    [type='radio'] + img {
+      cursor: pointer;
+      border-radius: 8px;
+      width: 80px;
+      border: 5px solid $app_grey2;
+    }
+
+    /* CHECKED STYLES */
+    [type='radio']:checked + img {
+      border-color: $app_gold;
+    }
+  }
+
+  &.captcha-images.round {
+    [type='radio'] + img {
+      border-radius: 100%;
+    }
+  }
+
+  &.language-bar {
+    img {
+      width: 18px;
+      padding-right: 10px;
+    }
+
+    span {
+      display: flex;
+      font-size: 14px;
+      padding-left: 5px;
+    }
+
+    .MuiTabs-flexContainer {
+      justify-content: flex-end;
+    }
+  }
+
+  &.link {
+    @extend %DEFAULT_LINK_STYLE;
+
+    .link--dark {
+      color: black !important;
+      &:hover {
+        color: black;
+      }
+    }
+
+    .link--back {
+      display: flex;
+      font-weight: 500;
+      color: $app_grey4;
+      flex-direction: row;
+      align-items: center;
+
+      .MuiSvgIcon-root {
+        font-size: 1.25rem;
+      }
+    }
+
+    .link--icon {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      text-transform: capitalize;
+
+      &.right {
+        .MuiSvgIcon-root {
+          margin-left: 3px;
+          font-size: 0.85rem;
+        }
+      }
+    }
+
+    .link--forgot-login {
+      display: flex;
+      color: white;
+      font-size: 16px;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      letter-spacing: 0.02rem;
+      text-transform: uppercase;
+      -webkit-transition: all 1s;
+      -moz-transition: all 1s;
+      -ms-transition: all 1s;
+      text-shadow: 1px 1px 6px black;
+      @media (max-height: 450px) {
+        padding-bottom: 120px;
+      }
+
+      svg {
+        color: white;
+        font-size: 28px;
+        margin-left: 6px;
+        text-shadow: 1px 1px 6px black;
+
+        &:hover {
+          animation: wobble-horizontal 1s ease-in-out;
+          -moz-animation: wobble-horizontal 1s ease-in-out;
+          -webkit-animation: wobble-horizontal 1s ease-in-out;
+          -o-animation: wobble-horizontal 1s ease-in-out;
+        }
+      }
+    }
+  }
+
+  &.menu {
+    .MuiIconButton-label {
+      color: $app_black;
+    }
+  }
+
+  &.textfield--container {
+    .inline--error {
+      color: $app_red;
+      margin: 5px 0;
+      padding: 0 12px;
+    }
+  }
+
+  &.textfield {
+    &.error {
+      border-color: $app_red;
+
+      input {
+        border-color: $app_red;
+      }
+    }
+
+    &.textfield--icon {
+      padding: 0.5rem;
+      @extend %CUSTOM_TEXTFIELD_STYLE;
+      input {
+        margin-left: 1rem;
+      }
+      svg {
+        color: $app_grey3;
+      }
+    }
+
+    // For search input in favourite section
+    &.textfield--search {
+      display: flex;
+      height: 50px;
+      margin-right: 0;
+      margin-left: 0;
+      margin-bottom: 1rem;
+      flex-direction: row;
+      align-items: center;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      border-radius: 7px;
+      border: solid 0.1rem #d7d7d7;
+      box-shadow: 0 0 1rem 0 #7676761a;
+
+      svg {
+        color: $app_grey3;
+      }
+
+      input {
+        border: none;
+        padding: 0 0.5rem;
+        font-family: 'Lato';
+      }
+    }
+
+    &.textfield--login {
+      padding: 1rem;
+      @extend %CUSTOM_TEXTFIELD_STYLE;
+      .btn {
+        padding: 0;
+        width: fit-content;
+      }
+      input {
+        margin-left: 1rem;
+        letter-spacing: 1px;
+      }
+      svg {
+        color: #d7d7d7;
+      }
+    }
+
+    &.textfield--label {
+      padding: 10px;
+      @extend %CUSTOM_TEXTFIELD_STYLE;
+      input {
+        font-weight: 600;
+      }
+      span {
+        color: $app_grey3;
+        font-weight: 600;
+        font-size: 15px;
+        font-family: 'Lato';
+        text-transform: capitalize;
+      }
+      .left--label {
+        font-size: 15px;
+        color: $app_black;
+      }
+    }
+
+    // optionally used for disabled input
+    &.black {
+      input {
+        color: $app_black;
+      }
+    }
+  }
+
+  &.pagination {
+    display: flex;
+    flex-wrap: wrap;
+
+    button {
+      width: auto;
+
+      &.btn--right {
+        margin-left: auto;
+      }
+    }
+
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+
+      button {
+        border: 0;
+        background: none;
+        text-transform: capitalize;
+        padding: 6px;
+        color: $app_grey5;
+
+        &:hover {
+          color: $app_gold;
+          cursor: pointer;
+        }
+
+        &:disabled {
+          cursor: auto;
+          color: $app_grey3;
+        }
+
+        &.pagination--first-last {
+          padding: 0;
+        }
+
+        &.selected {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  &.autocomplete {
+    .wrapper {
+      position: relative;
+      .icon {
+        position: absolute;
+        top: 6px;
+        left: 0.5rem;
+        z-index: 99;
+      }
+    }
+
+    .MuiAutocomplete-inputRoot[class*='MuiInput-root'] {
+      border-radius: 7px;
+      background-color: #fff;
+      border: solid 0.1rem #d7d7d7;
+      padding: 0.25rem;
+
+      .MuiAutocomplete-input:first-child {
+        font-size: 14px;
+        font-family: 'Lato';
+        display: flex;
+        height: 100%;
+        margin-left: 2.6rem;
+      }
+    }
+
+    .MuiInput-underline {
+      &::before {
+        border-bottom: 0;
+      }
+      &::after {
+        border-bottom: 0;
+      }
+      &:hover:not(.Mui-disabled):before {
+        border-bottom: 0;
+      }
+    }
+
+    &.dropdown {
+      .MuiAutocomplete-inputRoot[class*='MuiInput-root'] {
+        .MuiAutocomplete-input:first-child {
+          margin-left: 15px;
+          margin-right: 15px;
+        }
+
+        .MuiAutocomplete-endAdornment {
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+
+  &.progress-bar {
+    &.gold {
+      .MuiLinearProgress-barColorPrimary {
+        background-color: $app_gold !important;
+      }
+    }
+
+    &.red {
+      .MuiLinearProgress-barColorPrimary {
+        background-color: $app_red !important;
+      }
+    }
+
+    .MuiLinearProgress-barColorPrimary {
+      background-color: #1a90ff;
+    }
+  }
+
+  &.header {
+    background-color: $app_grey6;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: $app_white;
+
+    &.no-bg {
+      background: none;
+    }
+
+    .logo {
+      margin: 25px 0 25px 20px;
+      height: 34px;
+
+      @media screen and (max-width: 768px) {
+        margin: 30px 0 30px 15px;
+        height: 30px;
+      }
+    }
+
+    .timestamp {
+      display: flex;
+      align-content: center;
+      font-size: 12px;
+      font-weight: bold;
+      padding: 15px 25px 25px 25px;
+    }
+
+    .nav--list {
+      .MuiTab-root {
+        padding: 10px 25px;
+      }
+
+      &.language-bar {
+        .MuiTab-root {
+          padding: 10px 5px;
+        }
+      }
+    }
+  }
+
+  &.loader {
+    z-index: 2000;
+    img {
+      width: 250px;
+    }
+  }
+
+  &.table {
+    .MuiTableHead-root {
+      .MuiTableCell-head {
+        background: $app_grey5;
+        color: $app_white;
+        padding: 10px 20px;
+        font-size: 12px;
+        line-height: 1.1rem;
+
+        &:first-child {
+          border-top-left-radius: 8px;
+          border-bottom-left-radius: 8px;
+        }
+
+        &:last-child {
+          border-top-right-radius: 8px;
+          border-bottom-right-radius: 8px;
+        }
+      }
+    }
+
+    .MuiTableBody-root {
+      .MuiTableCell-body {
+        font-size: 13px;
+
+        &.green {
+          color: $app_green;
+        }
+
+        &.red {
+          color: $app_red;
+        }
+      }
+    }
+
+    .MuiCheckbox-root {
+      padding: 0;
+      img {
+        background: #fff;
+        border-radius: 100%;
+        width: 20px;
+      }
+    }
+  }
+
+  &.pdf-viewer {
+    &.MuiBackdrop-root {
+      z-index: 999;
+      flex-direction: column;
+      justify-content: start;
+
+      .pdf-viewer--header {
+        align-self: flex-start;
+        background: $app_black;
+        height: 70px;
+        padding: 10px 20px;
+
+        button {
+          color: $app_white;
+
+          @media screen and (max-width: 768px) {
+            width: auto;
+          }
+        }
+      }
+
+      .pdf-viewer--content {
+        overflow-y: scroll;
+        width: 100%;
+
+        .react-pdf__Page {
+          margin: 20px;
+
+          .react-pdf__Page__canvas {
+            margin: 0 auto;
+          }
+        }
+
+        .react-pdf__message {
+          margin: 20px;
+          color: $app_white;
+
+          img {
+            width: 250px;
+          }
+        }
+      }
+    }
+  }
+
+  &.timer {
+    p {
+      margin: 0;
+      text-align: right;
+
+      @media screen and (max-width: 768px) {
+        text-align: left;
+      }
+
+      &:last-child {
+        font-weight: bold;
+      }
+    }
+  }
+
+  &.accordion {
+    width: 100%;
+    .MuiAccordionSummary-root {
+      padding: 0 30px;
+      background-color: $dropzone-active-bg;
+    }
+    .MuiTypography-subtitle2 {
+      font-weight: 600;
+    }
+    &.Mui-expanded {
+      margin: 0 0 16px 0;
+    }
+  }
+
+  &.number--container {
+    input {
+      border-radius: 5px;
+      border: solid 0.1rem #fff;
+      padding: 12px 15px;
+      font-size: 15px;
+      background: #fff;
+      width: 100%;
+    }
+
+    input:focus-visible {
+      outline-color: #fff;
+    }
+
+    .inline--error {
+      color: $app_red;
+      margin: 5px 0;
+      padding: 0 12px;
+    }
+  }
+
+  &.number {
+    &.error {
+      border-color: $app_red;
+
+      input {
+        border-color: $app_red;
+      }
+
+      input:focus-visible {
+        outline-color: #fff;
+      }
+    }
+
+    &.number--label {
+      padding: 10px;
+      @extend %CUSTOM_TEXTFIELD_STYLE;
+      input {
+        font-weight: 600;
+      }
+      span {
+        color: $app_grey3;
+        font-weight: 600;
+        font-size: 12px;
+        font-family: 'Lato';
+        text-transform: capitalize;
+      }
+      .left--label {
+        font-size: 15px;
+        color: $app_black;
+        padding-right: 5px;
+      }
+    }
+
+    &.number--readonly {
+      background: $dropzone-active-bg;
+    }
+
+    input[disabled] {
+      background: $dropzone-active-bg;
+    }
+  }
+}
+
+.autocomplete-list-wrapper {
+  span {
+    width: 100%;
+    &:hover {
+      color: $app_gold;
+    }
+  }
+
+  // Text style when no input match
+  .MuiAutocomplete-noOptions {
+    color: #fff;
+    font-style: italic;
+  }
+
+  ::-webkit-scrollbar {
+    width: 5px;
+    padding: 2px;
+  }
+
+  ::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: $app_grey7;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: $app_grey3;
+  }
+}

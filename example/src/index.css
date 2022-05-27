@@ -1,0 +1,68 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #fafafa;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.btn.btn-basic {
+  background-color: seagreen;
+}
+
+.btnTry {
+  font-size: 100;
+  background-color: 'red';
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+}
+
+.routeContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: transparent;
+
+}
+
+.route {
+  width: 130px;
+  height: 30px;
+  font-size: 17px;
+  font-weight: bold;
+  margin:10px;
+  -webkit-transition: color 0.5s, background-color 0.5s;
+  -moz-transition: color 0.5s, background-color 0.5s;
+  -o-transition: color 0.5s, background-color 0.5s;
+  border-radius: 10px;
+
+}
+a.route:link, a.route:visited {
+  background-color: #AA66CC;
+  color: #fafafa;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a.route:hover, a.route:active {
+  background-color: #4a42ae;
+  color: white;
+}
+a.route:focus {
+  background-color: #4a42ae;
+  color: white;
+}

@@ -1,0 +1,203 @@
+@import '../Styles/colours.scss';
+
+%DEFAULT_BTN_STYLE {
+  height: 46px;
+  font-size: 13px;
+  font-weight: bold;
+  border-radius: 7px;
+  text-align: center;
+  white-space: nowrap;
+  font-family: 'Lato';
+  line-height: 1.42857;
+  display: inline-block;
+  vertical-align: middle;
+  text-transform: uppercase;
+}
+
+%DEFAULT_HOVER_EFFECT {
+  background-color: $app_green !important;
+  box-shadow: 0 0 1rem 0 rgba(128, 128, 128, 0.5);
+}
+
+%CUSTOM_HOVER_EFFECT {
+  color: $app_grey5;
+  border-color: #adadad;
+  background-color: $transparent_btn;
+}
+
+.btn {
+  &.btn-basic {
+    @extend %DEFAULT_BTN_STYLE;
+
+    color: white;
+    padding: 0.5rem 1rem;
+    border: 1px solid transparent;
+    background-color: $app_green;
+
+    &.shadow {
+      box-shadow: 0 0 1rem 0 rgba(125, 125, 125, 0.15);
+
+      &:hover {
+        box-shadow: 0 0 1rem 0 rgba(128, 128, 128, 0.5);
+      }
+    }
+
+    // Default hover options
+    &:hover {
+      @extend %DEFAULT_HOVER_EFFECT;
+    }
+
+    // Transparent btn with black border
+    &.transparent-bb {
+      color: $app_grey5;
+      background-color: transparent;
+      border: solid 0.1rem $app_grey5;
+
+      &:hover {
+        box-shadow: none;
+        background-color: $transparent_btn !important;
+      }
+    }
+
+    // Transparent btn with white border
+    &.transparent-bw {
+      color: $app_white;
+      background-color: transparent;
+      border: solid 0.1rem $app_white;
+
+      &:hover {
+        background-color: transparent !important;
+        box-shadow: 0 0 1rem 0 rgba(128, 128, 128, 0.5);
+      }
+    }
+
+    // The legacy gold button
+    &.gold {
+      color: black;
+      border-radius: 0;
+      font-size: 14px;
+      font-weight: 900;
+      border-color: $app_legacy_gold !important;
+      background-color: $app_legacy_gold !important;
+
+      &:hover {
+        box-shadow: none !important;
+      }
+    }
+
+    &.basic-gold {
+      color: black;
+      border-color: $app_gold;
+      background-color: $app_gold;
+
+      &:hover {
+        background-color: $app_gold !important;
+        box-shadow: 0 0 1rem 0 rgba(128, 128, 128, 0.5);
+      }
+    }
+  }
+
+  &.btn-action {
+    @extend %DEFAULT_BTN_STYLE;
+
+    color: white;
+    white-space: nowrap;
+    padding: 0.5rem 1rem;
+    touch-action: manipulation;
+    background-color: $app_green;
+    border: 1px solid transparent;
+
+    // Transparent btn with black border
+    &.transparent-bb {
+      color: $app_grey5;
+      background-color: transparent;
+      border: solid 0.1rem $app_grey5;
+    }
+
+    // Transparent btn with white border
+    &.transparent-bw {
+      color: $app_white;
+      background-color: transparent;
+      border: solid 0.1rem $app_white;
+
+      // brightness(0) makes all image black, except transparent parts, which remain transparent.
+      // invert(1) makes the black parts white
+      img {
+        filter: brightness(0) invert(1);
+      }
+
+      &:hover {
+        img {
+          filter: none;
+        }
+        color: $app_grey5;
+        background-color: $app_gold;
+        border: solid 0.1rem transparent;
+      }
+    }
+
+    // Transparent btn with grey border
+    &.transparent-b--grey {
+      height: 50px;
+      color: $app_grey3;
+      border-radius: 7px;
+      border: solid 0.1rem #d7d7d7;
+      box-shadow: 0 0 1rem 0 #7676761a;
+      background-color: white;
+      svg {
+        margin-left: 0px;
+        height: 1.1rem;
+        width: 1.3rem;
+        margin-right: 0.75rem;
+      }
+    }
+
+    // Customized CSS if using icons from assets folder
+    &.btn--asset {
+      display: flex !important;
+      align-items: center !important;
+
+      img {
+        margin-left: 1rem;
+      }
+    }
+
+    &.hover--default {
+      &:hover {
+        color: white;
+        border: 1px solid transparent;
+        @extend %DEFAULT_HOVER_EFFECT;
+      }
+    }
+
+    // (Default) Custom hover for action button
+    &:hover {
+      @extend %CUSTOM_HOVER_EFFECT;
+    }
+
+    .MuiSvgIcon-root {
+      width: 1.3rem;
+      height: 1.8rem;
+      margin-left: 10px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    &.outlined-btn {
+      border: none;
+      color: $app_grey3;
+      text-transform: none;
+    }
+  }
+
+  &.btn-icon {
+    &:hover {
+      background: none;
+    }
+  }
+
+  @media (max-width: 767px) {
+    width: 100%;
+    float: none;
+  }
+}

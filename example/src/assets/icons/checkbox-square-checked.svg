@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="27px" height="27px" viewBox="0 0 27 27" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 60.1 (88133) - https://sketch.com -->
+    <title>Checkbox_active</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Prototype-NTB" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="T2_401" transform="translate(-353.000000, -490.000000)">
+            <g id="Checkbox_active" transform="translate(354.000000, 491.000000)">
+                <rect id="Rectangle" stroke="#D3D3D3" fill="#FFFFFF" x="0" y="0" width="25" height="25"></rect>
+                <g id="tick-green" transform="translate(6.000000, 8.000000)" fill="#389A6E" fill-rule="nonzero">
+                    <path d="M4.81103835,7.60832769 L2.37075148,5.01073307 C1.94106642,4.5533493 1.25194886,4.5533493 0.822263798,5.01073307 C0.392578734,5.46811684 0.392578734,6.20165685 0.822263798,6.65904062 L4.04084814,10.085104 C4.25163704,10.3094809 4.53539133,10.4302993 4.81103835,10.4302993 C5.08668538,10.4302993 5.37043966,10.3181108 5.58122856,10.085104 L13.1777362,1.99890409 C13.6074213,1.54152032 13.6074213,0.807980307 13.1777362,0.350596536 C12.7561584,-0.115417117 12.0589336,-0.115417117 11.6292485,0.341966654 L4.81103835,7.60832769 Z" id="Shape-Copy-15"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,210 @@
+import { LLD_INFO, SWIFT_MESSAGE_INPUT_MAX_CHARS } from 'settings/constants/transfer/swift';
+import {
+  FIELD_TYPE_TEXT,
+  EMAIL_MAX_CHARS,
+  FIELD_TYPE_NUMBER,
+  FIELD_TYPE_SELECT,
+  FORMAT_ALPHANUMERIC,
+  FIELD_TYPE_ACCORDION,
+  FORMAT_BENEFICIARY_NAME,
+  FIELD_TYPE_AUTOCOMPLETE,
+  FIELD_TYPE_SECTION_HEADER,
+  FORMAT_ALPHABET_WITH_SPACE,
+  DEFAULT_MIN_TRANSFER_AMOUNT,
+  DEFAULT_MAX_TRANSFER_AMOUNT,
+  BENEFICIARY_ADDRESS_MAX_LENGTH,
+} from 'settings/constants/transaction';
+
+export const SWIFT_FORM_FIELDS = [
+  {
+    name: 'accountNumber',
+    label: 'transaction.transfer.swift.modal.accountTitle',
+    type: FIELD_TYPE_TEXT,
+    isHeader: true,
+    hasToolTip: true,
+    toolTipTitle: 'transaction.transfer.swift.modal.tooltip',
+    format: FORMAT_ALPHANUMERIC,
+    validationRules: [
+      { type: 'required', isValidateRequired: true },
+      { type: 'accountLength', isValidateRequired: true },
+      { type: 'validIBAN', isValidateRequired: true },
+    ],
+  },
+  {
+    name: 'transferAmount',
+    label: 'transaction.transfer.transactionAmount',
+    type: FIELD_TYPE_NUMBER,
+    hasOption: true,
+    optionField: {
+      options: [],
+      name: 'currency',
+      // NOTE: validationRules are inside utils\transfer\swift\getter because it was getting overridden by the utils
+    },
+    validationRules: [
+      { type: 'required', isValidateRequired: true },
+      { type: 'minAmount', value: DEFAULT_MIN_TRANSFER_AMOUNT, isValidateRequired: true },
+      { type: 'maxAmount', value: DEFAULT_MAX_TRANSFER_AMOUNT, isValidateRequired: true },
+    ],
+  },
+  {
+    name: 'transactionCharges',
+    label: 'transaction.transfer.transactionCharges',
+    placeholder: 'transaction.transfer.swift.placeholder.select',
+    type: FIELD_TYPE_SELECT,
+    options: [],
+    className: 'mb3',
+    validationRules: [{ type: 'required', isValidateRequired: true }],
+  },
+  {
+    name: 'beneficiaryBank',
+    type: FIELD_TYPE_ACCORDION,
+    defaultExpanded: true,
+    title: 'transaction.transfer.beneficiary.bank',
+    fields: [
+      {
+        name: 'beneficiaryBankSwiftCode',
+        label: 'transaction.transfer.beneficiary.swiftCode',
+        type: FIELD_TYPE_TEXT,
+        readOnly: true,
+      },
+      {
+        name: 'beneficiaryBankName',
+        label: 'transaction.transfer.beneficiary.bank',
+        type: FIELD_TYPE_TEXT,
+        readOnly: true,
+      },
+      {
+        name: 'beneficiaryBankAddress1',
+        label: 'transaction.transfer.beneficiary.bankAddress',
+        type: FIELD_TYPE_TEXT,
+        readOnly: true,
+      },
+      {
+        // NOTE: No label for this field
+        name: 'beneficiaryBankAddress2',
+        label: '',
+        type: FIELD_TYPE_TEXT,
+        readOnly: true,
+      },
+      {
+        name: 'beneficiaryBankCountry',
+        label: 'transaction.transfer.beneficiary.bankCountry',
+        type: FIELD_TYPE_TEXT,
+        readOnly: true,
+        className: 'mb3',
+      },
+    ],
+  },
+  {
+    name: 'beneficiaryInfo',
+    type: FIELD_TYPE_ACCORDION,
+    defaultExpanded: true,
+    title: 'transaction.transfer.beneficiary.info',
+    fields: [
+      // NOTE: beneficiaryName is inside utils\transfer\swift\getter because new field will be concat to the front
+      // this is a workaround for a CHF currency that will add 2 new fields after beneficiaryName
+      {
+        name: 'beneficiaryAddressStreet',
+        label: 'transaction.transfer.beneficiary.address',
+        type: FIELD_TYPE_TEXT,
+        format: FORMAT_BENEFICIARY_NAME,
+        maxLength: BENEFICIARY_ADDRESS_MAX_LENGTH,
+        placeholder: 'transaction.transfer.swift.placeholder.street',
+        validationRules: [{ type: 'required', isValidateRequired: true }],
+      },
+      {
+        name: 'beneficiaryAddressOther',
+        type: FIELD_TYPE_TEXT,
+        format: FORMAT_BENEFICIARY_NAME,
+        maxLength: BENEFICIARY_ADDRESS_MAX_LENGTH,
+        placeholder: 'transaction.transfer.swift.placeholder.other',
+      },
+      {
+        name: 'beneficiaryAddressCountry',
+        type: FIELD_TYPE_TEXT,
+        format: FORMAT_ALPHABET_WITH_SPACE,
+        maxLength: BENEFICIARY_ADDRESS_MAX_LENGTH,
+        placeholder: 'transaction.transfer.swift.placeholder.country',
+      },
+      {
+        name: 'message',
+        label: 'transaction.transfer.beneficiary.message',
+        placeholder: 'transaction.transfer.swift.placeholder.message',
+        type: FIELD_TYPE_TEXT,
+        format: FORMAT_ALPHANUMERIC,
+        maxLength: SWIFT_MESSAGE_INPUT_MAX_CHARS,
+      },
+      {
+        name: 'beneficiaryEmail',
+        label: 'transaction.transfer.beneficiary.emailOptional',
+        type: FIELD_TYPE_TEXT,
+        maxLength: EMAIL_MAX_CHARS,
+        validationRules: [{ type: 'validEmail', isValidateRequired: true }],
+      },
+    ],
+  },
+];
+
+export const SWIFT_LLD_FIELDS = [
+  {
+    label: 'transaction.transfer.swift.lld.label',
+    type: FIELD_TYPE_SECTION_HEADER,
+  },
+  {
+    name: 'lldIdentityStatus',
+    label: 'transaction.transfer.swift.lld.identityStatus.label',
+    placeholder: 'transaction.transfer.swift.placeholder.select',
+    type: FIELD_TYPE_AUTOCOMPLETE,
+    options: LLD_INFO.identityStatuses,
+    validationRules: [{ type: 'required', isValidateRequired: true }],
+  },
+  {
+    name: 'lldCitizenship',
+    label: 'transaction.transfer.swift.lld.citizenship.label',
+    placeholder: 'transaction.transfer.swift.placeholder.select',
+    type: FIELD_TYPE_AUTOCOMPLETE,
+    options: LLD_INFO.countries,
+    validationRules: [{ type: 'required', isValidateRequired: true }],
+  },
+  {
+    name: 'lldBeneficiary',
+    label: 'transaction.transfer.swift.lld.beneficiary.label',
+    placeholder: 'transaction.transfer.swift.placeholder.select',
+    type: FIELD_TYPE_AUTOCOMPLETE,
+    options: LLD_INFO.beneficiaries,
+    validationRules: [{ type: 'required', isValidateRequired: true }],
+  },
+  {
+    name: 'lldRelationship',
+    label: 'transaction.transfer.swift.lld.relationship.label',
+    placeholder: 'transaction.transfer.swift.placeholder.select',
+    type: FIELD_TYPE_AUTOCOMPLETE,
+    options: LLD_INFO.relationships,
+    validationRules: [{ type: 'required', isValidateRequired: true }],
+  },
+  {
+    name: 'lldPurpose',
+    label: 'transaction.transfer.swift.lld.purpose.label',
+    placeholder: 'transaction.transfer.swift.placeholder.select',
+    type: FIELD_TYPE_AUTOCOMPLETE,
+    options: LLD_INFO.purposes,
+    validationRules: [{ type: 'required', isValidateRequired: true }],
+  },
+  {
+    options: [],
+    name: 'lldDescription',
+    label: 'transaction.transfer.swift.lld.description.label',
+    placeholder: 'transaction.transfer.swift.placeholder.select',
+    type: FIELD_TYPE_AUTOCOMPLETE,
+    validationRules: [{ type: 'required', isValidateRequired: true }],
+  },
+  {
+    initialValue: '',
+    name: 'lldMessage',
+    label: 'transaction.transfer.swift.lld.message.label',
+    placeholder: 'transaction.transfer.swift.lld.message.placeholder',
+    format: FORMAT_ALPHANUMERIC,
+    type: FIELD_TYPE_TEXT,
+    maxLength: SWIFT_MESSAGE_INPUT_MAX_CHARS,
+  },
+];

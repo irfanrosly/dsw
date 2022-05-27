@@ -1,0 +1,182 @@
+@import '../Styles/colours.scss';
+.common {
+  &.calendar {
+    .textfield--label {
+      padding: 8px 15px;
+      border-radius: 5px;
+
+      .MuiIconButton-label {
+        color: $app_black;
+
+        svg {
+          height: 20px;
+        }
+      }
+
+      .MuiIconButton-root {
+        padding: 0;
+        width: auto;
+      }
+
+      input {
+        color: $app_grey3;
+      }
+
+      input:read-only {
+        background: $app_white;
+      }
+
+      &.disabled {
+        background: $app_grey2;
+
+        .left--label {
+          color: $app_grey3;
+        }
+
+        input:read-only {
+          background: $app_grey2;
+        }
+      }
+    }
+  }
+}
+
+.calendar--menu {
+  .MuiMenu-paper {
+    margin-top: 10px;
+    height: 270px;
+    overflow: hidden;
+    background: $app_grey5;
+
+    .MuiList-padding {
+      padding: 0;
+    }
+
+    .DayPicker-Caption {
+      padding: 0;
+      margin-bottom: 0;
+
+      button {
+        background: none;
+        border: 0;
+        color: $app_white;
+        font-size: 16px;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      .btn-picker {
+        display: flex;
+        align-items: center;
+
+        &:hover {
+          color: $app_gold;
+        }
+
+        > span {
+          padding-right: 5px;
+        }
+      }
+
+      .MuiCollapse-container {
+        margin-top: 5px;
+      }
+
+      .year-picker {
+        overflow-y: scroll;
+        max-height: 200px;
+
+        .year {
+          padding: 5px;
+
+          &:hover,
+          &.selected {
+            background: $app_gold;
+            color: $app_black;
+
+            button {
+              color: $app_black;
+            }
+          }
+        }
+      }
+
+      ::-webkit-scrollbar {
+        width: 5px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: $app_grey7;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: $app_grey3;
+        border-radius: 10px;
+      }
+    }
+
+    .DayPicker-Caption.opened + .DayPicker-Weekdays,
+    .DayPicker-Caption.opened ~ .DayPicker-Body {
+      visibility: collapse;
+    }
+
+    .DayPicker {
+      display: block;
+      font-size: 14px;
+
+      .DayPicker-Day {
+        color: $app_white;
+        padding: 8px;
+
+        &:not(.DayPicker-Day--disabled):not(.DayPicker-Day--selected):not(.DayPicker-Day--outside):hover {
+          background-color: $app_gold;
+          color: $app_black;
+          border-radius: 0;
+        }
+      }
+
+      .DayPicker-Day--today {
+        position: relative;
+        &::after {
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          margin-left: 2px;
+          transform: translate(-50%, -50%);
+          content: '\A';
+          width: 5px;
+          height: 5px;
+          border-radius: 100%;
+          background: $app_gold;
+        }
+      }
+
+      .DayPicker-Day--disabled {
+        color: $app_grey7;
+      }
+
+      .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
+        background-color: $app_gold;
+        color: $app_black;
+        border-radius: 0;
+      }
+
+      .DayPicker-NavBar {
+        .DayPicker-NavButton {
+          width: 2em;
+        }
+
+        // chevron-left-yellow.svg
+        .DayPicker-NavButton--prev {
+          background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='utf-8'%3F%3E%3C!-- Generator: Adobe Illustrator 25.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0) --%3E%3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='52px' height='52px' viewBox='0 0 52 52' style='enable-background:new 0 0 52 52;' xml:space='preserve'%3E%3Cstyle type='text/css'%3E .st0%7Bfill:%23FFC83D;%7D%0A%3C/style%3E%3Cg%3E%3Cpath class='st0' d='M34.2,47.7L13.4,27.2c-0.6-0.6-0.6-1.6,0-2.2L34.2,4.5c0.6-0.6,1.6-0.6,2.2,0l2.2,2.2c0.6,0.6,0.6,1.6,0,2.2 L22.1,25c-0.6,0.6-0.6,1.6,0,2.2l16.3,16.1c0.6,0.6,0.6,1.6,0,2.2l-2.2,2.2C35.7,48.2,34.8,48.2,34.2,47.7z'/%3E%3C/g%3E%3C/svg%3E%0A");
+        }
+        // chevron-right-yellow.svg
+        .DayPicker-NavButton--next {
+          background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='utf-8'%3F%3E%3C!-- Generator: Adobe Illustrator 25.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0) --%3E%3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='52px' height='52px' viewBox='0 0 52 52' style='enable-background:new 0 0 52 52;' xml:space='preserve'%3E%3Cstyle type='text/css'%3E .st0%7Bfill:%23FFC83D;%7D%0A%3C/style%3E%3Cg%3E%3Cpath class='st0' d='M17.9,4.4l20.7,20.5c0.6,0.6,0.6,1.6,0,2.2L17.9,47.6c-0.6,0.6-1.6,0.6-2.2,0l-2.2-2.2c-0.6-0.6-0.6-1.6,0-2.2 l16.3-16.1c0.6-0.6,0.6-1.6,0-2.2L13.6,8.8c-0.6-0.6-0.6-1.6,0-2.2l2.2-2.2C16.4,3.9,17.3,3.9,17.9,4.4z'/%3E%3C/g%3E%3C/svg%3E%0A");
+        }
+      }
+    }
+  }
+}

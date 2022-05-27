@@ -1,0 +1,176 @@
+@import '../styles/colours.scss';
+
+.nav {
+  .MuiTab-root {
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &.sidebar {
+    position: relative;
+    top: 0;
+    right: 0;
+    background: $app_black;
+
+    &.no-bg {
+      background: none;
+    }
+
+    .sidebar--btn {
+      padding: 30px 15px;
+
+      @media screen and (max-width: 768px) {
+        padding: 30px 15px;
+      }
+
+      .btn-icon {
+        padding: 0;
+        width: 30px;
+        height: 30px;
+
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  &.sidebar--drawer {
+    .MuiDrawer-paper {
+      width: 300px;
+      background: $app_black;
+      color: $app_white;
+      box-shadow: none;
+    }
+
+    .MuiTab-wrapper {
+      height: 56px;
+      padding: 0 10px;
+      justify-content: space-between;
+
+      img {
+        height: 20px;
+        margin: 2px 0;
+      }
+
+      &:hover {
+        color: $app_gold;
+      }
+    }
+  }
+
+  &.nav--list {
+    .MuiTabs-indicator {
+      height: 3px;
+      background-color: $app_gold;
+    }
+
+    .MuiTab-root {
+      min-width: auto;
+
+      .MuiTab-wrapper {
+        color: $app_white;
+        padding-top: 25px;
+
+        .inline--icon {
+          display: flex;
+          align-items: center;
+
+          svg {
+            color: $app_gold;
+            font-size: 16px;
+            margin-left: 8px;
+          }
+        }
+      }
+    }
+
+    &.dashboard--sidebar-navigation {
+      .Mui-selected {
+        .MuiTab-wrapper {
+          color: $app_gold;
+        }
+      }
+      .MuiTabs-indicator {
+        display: none;
+      }
+    }
+
+    &.hidden-xs {
+      @media screen and (max-width: 768px) {
+        display: none;
+      }
+    }
+
+    &.indicator--left {
+      .MuiTabs-indicator {
+        left: 0;
+      }
+    }
+
+    &.indicator--top {
+      .Mui-selected {
+        border-top: 3px solid $app_gold;
+      }
+      .MuiTabs-indicator {
+        display: none;
+      }
+    }
+
+    &.vertical {
+      .MuiTab-root {
+        min-width: 100%;
+        border-bottom: 1px solid $app_grey5;
+      }
+
+      .MuiTab-wrapper {
+        padding: 0;
+        justify-content: center;
+        align-items: flex-start;
+      }
+    }
+
+    &.justify-center {
+      .MuiTabs-flexContainer {
+        justify-content: center;
+
+        @media screen and (max-width: 768px) {
+          justify-content: space-between;
+        }
+      }
+    }
+
+    &.MuiTabs-root {
+      border: none;
+      flex: 1;
+    }
+  }
+
+  &.sticky--drawer {
+    .MuiTab-root {
+      width: 120px;
+      min-width: 120px;
+
+      img {
+        height: 30px;
+      }
+
+      .MuiTab-wrapper {
+        line-height: 1.4;
+        justify-content: flex-start;
+        height: 100%;
+
+        @media screen and (max-width: 768px) {
+          font-size: 12px;
+        }
+      }
+    }
+
+    .ttc {
+      .MuiTab-wrapper {
+        text-transform: capitalize;
+      }
+    }
+  }
+}
